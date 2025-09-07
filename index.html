@@ -1004,10 +1004,10 @@
     function init(){
       const slug = getTenantKey();
       const store = sendToStore({
-          tenantId: state.tenant.slug,
-          restaurantName: state.tenant.name,
-          experience: state.experience,
-          answers: state.neg,  // or positive path data
+          tenantId: "1",
+          restaurantName: "Sahara",
+          experience: "Great",
+          answers: "positive",  // or positive path data
           timestampISO: new Date().toISOString()
         });
       
@@ -1100,4 +1100,5 @@
   </script>
 </body>
 </html>
+
 
