@@ -7,9 +7,5 @@
   "dependencies": {
     "@netlify/neon": "latest",
     "@netlify/blobs": "latest"
-  },
-  "scripts": {
-    "build:store": "node netlify/functions/build-store.js",
-    "build": "npm run build:store"
   }
 }
