@@ -276,6 +276,22 @@
       return "sahara"; // default for local testing
     }
 
+    function sendToStore(payload) {
+      return fetch("/.netlify/functions/save-feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+      .then(r => r.json())
+      .then(data => {
+        console.log("✅ Saved to store:", data);
+        return data;
+      })
+      .catch(err => {
+        console.error("❌ Error:", err);
+      });
+    }
+
     /* where the tenant data comes from (Netlify Function) */
     const DATA_URL = "/.netlify/functions/get-tenant?slug=" + encodeURIComponent(getTenantKey());
 
@@ -987,6 +1003,14 @@
        ============================================================ */
     function init(){
       const slug = getTenantKey();
+      const store = sendToStore({
+          tenantId: state.tenant.slug,
+          restaurantName: state.tenant.name,
+          experience: state.experience,
+          answers: state.neg,  // or positive path data
+          timestampISO: new Date().toISOString()
+        });
+      
 
       // Pull tenant config
       fetch(DATA_URL, { cache: "no-store" })
@@ -1076,3 +1100,4 @@
   </script>
 </body>
 </html>
+
