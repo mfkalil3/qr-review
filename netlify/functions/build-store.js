@@ -1,16 +1,20 @@
-// build-store.js
+// netlify/functions/build-store.js
 import { getStore } from "@netlify/blobs";
 
-async function buildStore() {
-  const store = getStore("customers");
+export async function handler() {
+  try {
+    const store = getStore("customers");
 
-  // Example: writing some data to your store
-  await store.set("sahara", "all sahara json data");
+    await store.set("sahara", "all sahara json data");
 
-  console.log("✅ Store built and initialized!");
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: "✅ Store built and initialized!" }),
+    };
+  } catch (err) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: err.message }),
+    };
+  }
 }
-
-buildStore().catch((err) => {
-  console.error("❌ Error building store:", err);
-  process.exit(1);
-});
