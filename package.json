@@ -9,7 +9,7 @@
     "@netlify/blobs": "latest"
   },
   "scripts": {
-    "build:store": "node build-store.js",
+    "build:store": "node netlify/functions/build-store.js",
     "build": "npm run build:store"
   }
 }
