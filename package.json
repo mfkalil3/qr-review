@@ -5,6 +5,7 @@
   "type": "module",
   "engines": { "node": ">=18" },
   "dependencies": {
-    "@netlify/neon": "latest"
+    "@netlify/neon": "latest",
+    "@netlify/blobs": "latest"    
   }
 }
